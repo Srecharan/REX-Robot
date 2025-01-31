@@ -1,0 +1,11 @@
+<launch>
+    <!-- 0 = semi auto; 1 = full auto -->
+    <node name="gantry_move_client" pkg="gantry_move" type="gantry_move_client" respawn="true" output="screen">
+        <param name="robot_mode" type="Int" value="0"/>
+    </node>
+    
+    <node name="gantry_move_server" pkg="gantry_move" type="gantry_move_server" respawn="true" output="screen"> </node>
+    
+    <!-- node name="rviz" pkg="rviz" type="rviz" args="-d /home/agrobot/ros/catkin_ws/src/gantry_robot/gantry_move/launch/moveit.rviz" required="true" /-->
+      
+</launch>

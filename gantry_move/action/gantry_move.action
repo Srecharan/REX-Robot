@@ -1,0 +1,8 @@
+#goal definition
+int32 cut_command
+---
+#result definition
+int32 cut_result    
+---
+#feedback
+int32 cut_feedback
