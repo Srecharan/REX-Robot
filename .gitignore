@@ -1,0 +1,53 @@
+# ROS specific
+build/
+devel/
+logs/
+bin/
+lib/
+msg_gen/
+srv_gen/
+*Action.msg
+*ActionFeedback.msg
+*ActionGoal.msg
+*ActionResult.msg
+.catkin_workspace
+
+# Generated files
+*.pyc
+*.o
+*.so
+*.pcd
+*.bag
+*.png
+*.jpg
+*.jpeg
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# IDE specific
+.idea/
+.vscode/
+*.swp
+*.swo
+*.user
+*~
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Clearpath specific (since I see clearpath drivers in your project)
+*.ko
+*.mod
+*.mod.c
+*.symvers
+*.order
+.tmp_versions/
+
+# Custom project specific
+*.tar
+*.tar.gz
+*.zip
