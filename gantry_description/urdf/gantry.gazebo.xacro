@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:macro name="gantry_gazebo" params="prefix">
+
+    <gazebo reference="${prefix}gantryX">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}gantryY">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}gantryZ">
+      <selfCollide>true</selfCollide>
+    </gazebo> 
+    <gazebo reference="${prefix}gantryYAW">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}gantryPITCH">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}gantryROLL">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,322 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:include filename="$(find gantry_description)/urdf/gantry.transmission.xacro" />
+  <xacro:include filename="$(find gantry_description)/urdf/gantry.gazebo.xacro" />
+
+  <xacro:macro name="gantry_robot" params="prefix joint_limited
+    gantryX_lower_limit:=0    gantryX_upper_limit:=1.75
+    gantryY_lower_limit:=-0.5    gantryY_upper_limit:=0.5
+    gantryZ_lower_limit:=0    gantryZ_upper_limit:=0.625
+    gantryYAW_lower_limit:=-3.1415    gantryYAW_upper_limit:=3.1415
+    gantryPITCH_lower_limit:=-1.5707    gantryPITCH_upper_limit:=1.5707
+    gantryROLL_lower_limit:=-3.1415    gantryROLL_upper_limit:=3.1415
+    transmission_hw_interface:=hardware_interface/PositionJointInterface
+    safety_limits:=false safety_pos_margin:=0.15
+    safety_k_position:=20">
+
+    <xacro:gantry_transmission prefix="${prefix}" hw_interface="${transmission_hw_interface}" />
+    <xacro:gantry_gazebo prefix="${prefix}" />
+
+    <link name="base_link">
+        <!-- fixed structure -->
+        <inertial>
+            <mass value="1.0" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+
+        <visual>
+            <geometry>
+                <mesh filename="package://gantry_description/meshes/Simulation_Base.STL" />
+            </geometry>
+            <!--origin rpy="0 0 0" xyz="0.875 -0.565 0" /-->
+            <origin rpy="0 0 0" xyz="0.875 0 0" />
+            <material name="white">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://gantry_description/meshes/Simulation_Base.STL" />
+            </geometry>
+            <!--origin rpy="0 0 0" xyz="0.875 -0.565 0" /-->
+            <origin rpy="0 0 0" xyz="0.875 0 0" />
+        </collision>
+    </link>
+
+    <joint name="gantryX" type="prismatic">
+        <parent link="base_link" />
+        <child link="gantryX_link" />
+        <limit effort="1" lower="0" upper="1.75" velocity="0.5" />
+        <axis xyz="1 0 0" />
+        <origin rpy="0 0 0" xyz="0 0 0.14288" />
+    </joint>
+
+    <link name="gantryX_link">
+        <inertial>
+            <mass value="1.0" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://gantry_description/meshes/Simulation_X_Axis.STL" />
+            </geometry>
+            <!--origin rpy="0 0 0" xyz="0 -0.565 0.5461" /-->
+            <origin rpy="0 0 0" xyz="0 0 0.5461" />
+            <material name="blue">
+                <color rgba="0 0 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://gantry_description/meshes/Simulation_X_Axis.STL" />
+            </geometry>
+            <!--origin rpy="0 0 0" xyz="0 -0.565 0.5461" /-->
+            <origin rpy="0 0 0" xyz="0 0 0.5461" />
+        </collision>
+    </link>
+
+    <joint name="gantryY" type="prismatic">
+        <parent link="gantryX_link" />
+        <child link="gantryY_link" />
+        <!--limit effort="1" lower="0" upper="1.0" velocity="0.5" /-->
+        <limit effort="1" lower="-0.5" upper="0.5" velocity="0.5" />
+        <axis xyz="0 1 0" />
+        <!--axis xyz="0 -1 0" /-->
+        <origin rpy="0 0 0" xyz="0.077 0 1.49793" /> <!-- 0.077 0 1.49793 -->
+    </joint>
+
+    <link name="gantryY_link">
+        <inertial>
+            <mass value="1.0" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://gantry_description/meshes/Simulation_Y_Axis.STL" />
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <material name="green">
+                <color rgba="0 1 0 1" />
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://gantry_description/meshes/Simulation_Y_Axis.STL" />
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </collision>
+    </link>
+
+    <joint name="gantryZ" type="prismatic">
+        <parent link="gantryY_link" />
+        <child link="gantryZ_link" />
+        <limit effort="1" lower="0.0" upper="0.625" velocity="0.5" />
+        <axis xyz="0 0 -1" />
+        <!--origin rpy="3.1415 1.5707 3.1415" xyz="0.09843 0 -0.38044" /-->
+        <!--origin rpy="3.1415 1.5707 3.1415" xyz="0.09843 0 -0.5334" /-->
+        <origin rpy="0 0 0" xyz="0.09843 0 -0.5334" />
+    </joint>
+
+    <link name="gantryZ_link">
+        <inertial>
+            <mass value="0.001" />
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://gantry_description/meshes/Simulation_Z_Axis.STL" />
+            </geometry>
+            <origin rpy="0 1.5707 0" xyz="0 0 0" />
+            <!--origin rpy="0 1.5707 0" xyz="0 0 0" /-->
+            <material name="yellow">
+                <color rgba="1 1 0 1" />
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://gantry_description/meshes/Simulation_Z_Axis.STL" />
+            </geometry>
+            <origin rpy="0 1.5707 0" xyz="0 0 0" />
+            <!--origin rpy="0 1.5707 0" xyz="0 0 0" /-->
+        </collision>
+    </link>
+
+    <!--  YAW ADDITION START -->
+    <joint name="gantryYAW" type="revolute">
+      <parent link="gantryZ_link"/>
+      <!-- gantryZ_link -->
+      <child link="gantryYAW_link"/>
+      <origin rpy="0 0 0" xyz="0.075 0.0 0.1"/>
+      <limit effort="1" lower="-3.1415" upper="3.1415" velocity="3.15"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="gantryYAW_link">
+      <inertial>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0.00" ixz="0.00" iyy="0.001" iyz="0.00" izz="0.001"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <cylinder length="0.2" radius="0.05"/>
+        </geometry>
+      </visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <collision>
+        <geometry>
+          <cylinder length="0.2" radius="0.05"/>
+        </geometry>
+      </collision>
+    </link>
+    <!--   YAW ADDITION END -->
+
+    <!--  PITCH ADDITION START -->
+
+    <joint name="gantryPITCH" type="revolute">
+        <parent link="gantryYAW_link"/>
+        <child link="gantryPITCH_link"/>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.15"/>
+        <limit effort="1" lower="-1.5707" upper="1.5707" velocity="3.15"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="gantryPITCH_link">
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.001" ixy="0.00" ixz="0.00" iyy="0.001" iyz="0.00" izz="0.001"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <!--cylinder length="0.075" radius="0.05"/-->
+        <box size="0.05 0.1 0.05"/>
+      </geometry>
+    </visual>
+    <origin rpy="1.5707 0 0" xyz="0 0 0"/>
+    <collision>
+      <geometry>
+        <box size="0.05 0.1 0.05"/>
+      </geometry>
+    </collision>
+    </link>
+
+    <!--  PITCH ADDITION END -->
+
+    <!--  ROLL ADDITION START -->
+
+    <joint name="gantryROLL" type="revolute">
+        <parent link="gantryPITCH_link"/>
+        <child link="gantryROLL_link"/>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.15"/>
+        <limit effort="1" lower="-3.1415" upper="3.1415" velocity="3.15"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="gantryROLL_link">
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.001" ixy="0.00" ixz="0.001" iyy="1.0" iyz="0.00" izz="0.001"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <box size="0.05 0.1 0.05"/>
+      </geometry>
+    </visual>
+    <origin rpy="1.5707 0 0" xyz="0 0 0"/>
+    <collision>
+      <geometry>
+        <box size="0.05 0.1 0.05"/>
+      </geometry>
+    </collision>
+    </link>
+
+    <!--  ROLL ADDITION END -->
+
+    <joint name="ee_fixed_joint" type="fixed">
+        <parent link="gantryROLL_link" /> <!-- gantryZ_link -->
+        <child link="ee_link" />
+        <origin xyz="0.0 0.0 -0.24" rpy="0.0 0.0 0.0" />
+        <!--origin xyz="0.1 0.0 0.0" rpy="0.0 0.0 0.0" /-->
+    </joint>
+
+    <link name="ee_link">
+        <collision>
+            <geometry>
+                <box size="0.05 0.05 0.05" />
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </collision>
+        <inertial>
+            <mass value="0.001" />
+            <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+    </link>
+
+    <!-- ROS base_link to UR 'Base' Coordinates transform -->
+    <link name="${prefix}base"/>
+    <joint name="${prefix}base_link-base_fixed_joint" type="fixed">
+      <!-- Note. this rotation is only needed as long as base_link itself is
+                 not corrected wrt the real robot (ie: rotated over 180
+                 degrees)
+      -->
+      <origin xyz="0 0 0" rpy="0 0 0"/><!--0 0 ${-pi} -->
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}base"/>
+    </joint>
+
+    <!-- Frame coincident with all-zeros TCP on UR controller -->
+    <!--link name="${prefix}tool0"/>
+    <joint name="${prefix}gantryYAW_link-tool0_fixed_joint" type="fixed">
+      <origin xyz="0 0 -0.24" rpy="0 0 0"/>
+      <parent link="${prefix}gantryYAW_link"/>
+      <child link="${prefix}tool0"/>
+    </joint-->
+
+    <!--link name="world" />
+    <joint name="world_joint" type="fixed">
+        <parent link="world" />
+        <child link="base_link" />
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+    </joint-->
+
+    <!--transmission name="trans_gantryX">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="gantryX">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="gantryX_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans_gantryY">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="gantryY">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="gantryY_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans_gantryZ">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="gantryZ">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="gantryZ_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo-->
+
+  </xacro:macro>
+</robot>

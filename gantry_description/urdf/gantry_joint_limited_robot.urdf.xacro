@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro"
+       name="gantry_robot" >
+
+  <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find gantry_description)/urdf/common.gazebo.xacro" />
+
+  <!-- ur5 -->
+  <xacro:include filename="$(find gantry_description)/urdf/gantry.urdf.xacro" />
+
+
+  <!-- conveyor robot -->
+  <xacro:include filename="$(find gantry_description)/urdf/conveyor_robot.urdf" />
+
+  <!-- arm -->
+  <xacro:gantry_robot prefix="" joint_limited="true"
+    gantryX_lower_limit= "0.0" gantryX_upper_limit="1.75"
+    gantryY_lower_limit="-0.5" gantryY_upper_limit="0.5"
+    gantryZ_lower_limit="0.0"  gantryZ_upper_limit="0.625"
+    gantryYAW_lower_limit="-3.1415"  gantryYAW_upper_limit="3.1415"
+    gantryPITCH_lower_limit="-1.5707"  gantryPITCH_upper_limit="1.5707"
+    gantryROLL_lower_limit="-3.1415"  gantryROLL_upper_limit="3.1415"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+  />
+    <!-- gantryROLL_lower_limit="-3.1415"  gantryROLL_upper_limit="3.1415" -->
+<!--  <link name="world" />-->
+
+<!--  <joint name="world_joint" type="fixed">-->
+<!--    <parent link="world" />-->
+<!--    <child link = "base_link" />-->
+<!--    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />-->
+<!--  </joint>-->
+
+</robot>

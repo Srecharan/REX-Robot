@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot name="conveyor_robot">
+  <material name="black">
+    <color rgba="0 0 0 1"/> 
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1"/> 
+  </material>
+
+  <link name="conveyor_base_link">
+    <visual>
+      <origin xyz="-0.7 0.32 -0.015"/>
+      <geometry>
+        <mesh filename="package://gantry_description/meshes/Assembly_without_slider.stl"/>
+      </geometry>
+      <material name="white"/> 
+    </visual>
+    <collision>
+      <origin xyz="-0.7 0.32 -0.015"/>
+      <geometry>
+        <mesh filename="package://gantry_description/meshes/Assembly_without_slider.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="fixed_link">
+    <!-- Intermediate link as a reference frame -->
+  </link>
+
+  <joint name="fixed_joint" type="fixed">
+    <parent link="conveyor_base_link"/>
+    <child link="fixed_link"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+  <link name="slider">
+    <visual>
+      <origin xyz="-0.7 0.32 0"/>
+      <geometry>
+        <mesh filename="package://gantry_description/meshes/slider.stl"/>
+      </geometry>
+      <material name="white"/> 
+    </visual>
+    <collision>
+      <origin xyz="-0.7 0.32 0"/>
+      <geometry>
+        <mesh filename="package://gantry_description/meshes/slider.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.7 0.32 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+  </link>
+
+  <joint name="slider_joint" type="prismatic">
+    <parent link="fixed_link"/>
+    <child link="slider"/>
+    <origin xyz="0 -0.105 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-0.01" upper="0.19" effort="100" velocity="0.5"/>
+    <dynamics damping="0.1" friction="0.2"/>
+  </joint>
+
+  <joint name="base_to_base_plate_joint" type="fixed">
+    <parent link="base_plate"/>
+    <child link="conveyor_base_link"/>
+    <origin xyz="0 0 0.025" rpy="0 0 0"/> <!-- Adjust the z-offset to place the conveyor on the base_plate -->
+  </joint>
+</robot>

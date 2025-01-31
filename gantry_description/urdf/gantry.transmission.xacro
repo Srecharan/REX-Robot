@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:macro name="gantry_transmission" params="prefix hw_interface">
+
+    <transmission name="${prefix}gantryX_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}gantryX">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}gantryX_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}gantryY_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}gantryY">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}gantryY_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}gantryZ_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}gantryZ">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}gantryZ_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}gantryYAW_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}gantryYAW">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}gantryYAW_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}gantryPITCH_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}gantryPITCH">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}gantryPITCH_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}gantryROLL_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}gantryROLL">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}gantryROLL_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+  </xacro:macro>
+</robot>
