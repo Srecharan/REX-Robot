@@ -1,0 +1,39 @@
+arm_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+     - gantryX
+     - gantryY
+     - gantryZ
+     - gantryYAW
+     - gantryPITCH
+     - gantryROLL
+  constraints:
+      goal_time: 0.6
+      stopped_velocity_tolerance: 0.05
+      gantryX: {trajectory: 0.1, goal: 0.1}
+      gantryY: {trajectory: 0.1, goal: 0.1}
+      gantryZ: {trajectory: 0.1, goal: 0.1}
+      gantryYAW: {trajectory: 0.1, goal: 0.1}
+      gantryPITCH: {trajectory: 0.1, goal: 0.1}
+      gantryROLL: {trajectory: 0.1, goal: 0.1}
+  stop_trajectory_duration: 0.5
+  state_publish_rate:  25
+  action_monitor_rate: 10
+  
+gazebo_ros_control:
+  pid_gains:
+      gantryX_joint: {p: 1.0, i: 0.01, d: 1.0}
+      gantryY_joint: {p: 1.0, i: 0.01, d: 1.0}
+      gantryZ_joint: {p: 1.0, i: 0.01, d: 1.0}
+      gantryYAW_joint: {p: 1.0, i: 0.01, d: 1.0}
+      gantryPITCH_joint: {p: 1.0, i: 0.01, d: 1.0}
+      gantryROLL_joint: {p: 1.0, i: 0.01, d: 1.0}
+joint_group_position_controller:
+  type: position_controllers/JointGroupPositionController
+  joints:
+     - gantryX
+     - gantryY
+     - gantryZ
+     - gantryYAW
+     - gantryPITCH
+     - gantryROLL
