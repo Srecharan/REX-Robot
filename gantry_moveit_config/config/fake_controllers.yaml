@@ -1,0 +1,13 @@
+controller_list:
+  - name: fake_manipulator_controller
+    joints:
+      - gantryX
+      - gantryY
+      - gantryZ
+      - gantryYAW
+      - gantryPITCH
+      - gantryROLL
+      - slider_joint
+  - name: fake_endeffector_controller
+    joints:
+      []

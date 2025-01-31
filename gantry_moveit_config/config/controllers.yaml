@@ -1,0 +1,20 @@
+controller_list:
+  - name: ""
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    joints:
+      - gantryX
+      - gantryY
+      - gantryZ
+      - gantryYAW
+      - gantryPITCH
+      - gantryROLL
+      - slider_joint
+    constraints:
+      gantryX: {trajectory: 0.1, goal: 0.01}
+      gantryY: {trajectory: 0.1, goal: 0.01}
+      gantryZ: {trajectory: 0.1, goal: 0.01}
+      gantryYAW: {trajectory: 0.1, goal: 0.01}
+      gantryPITCH: {trajectory: 0.1, goal: 0.01}
+      gantryROLL: {trajectory: 0.1, goal: 0.01}
+      slider_joint: {trajectory: 0.1, goal: 0.01}
