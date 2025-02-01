@@ -7,12 +7,6 @@
 ## Overview
 REX-Robot (Robot for Extracting leaf samples) is a sophisticated 6-DOF gantry-based robotic system designed for precise plant manipulation in agricultural settings. Developed in collaboration with Virginia Tech, the system combines high-precision motion control, advanced trajectory planning, and visual servoing to enable accurate leaf manipulation for early-stage plant disease detection.
 
-## Partners and Sponsorship
-- **Sponsor**: NIFA (National Institute of Food and Agriculture)
-- **Partner**: Virginia Tech (PI Song Li)
-- **Project Goal**: Early-stage plant disease detection in young tomato plants using autonomous Gantry robot with image collection, leaf sampling and genome sequencing capabilities
-- **CMU Scope**: Development of robotic platform capable of autonomous multi-view imaging, point cloud processing and leaf grasping and cutting capabilities
-
 ## System Architecture
 
 ### Hardware Components
@@ -171,6 +165,11 @@ rosrun gantry_move gantry_move_client
     <img src="assets/rex_sim.gif" alt="Simulation Demo"/>
     <p><em>MoveIt! simulation demonstrating motion planning and collision-aware trajectory generation (Playback speed: 2x)</em></p>
 </div>
+
+## Partners and Sponsorship
+- **Sponsor**: NIFA (National Institute of Food and Agriculture)
+- **Partner**: Virginia Tech 
+- **CMU Scope**:  Development of robotic platform capable of autonomous multi-view imaging, point cloud processing, and leaf grasping and cutting capabilities for early-stage plant disease detection in agricultural settings
 
 ## License
 This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
