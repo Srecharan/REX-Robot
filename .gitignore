@@ -18,9 +18,6 @@ srv_gen/
 *.so
 *.pcd
 *.bag
-*.png
-*.jpg
-*.jpeg
 
 # Compiled Dynamic libraries
 *.so
