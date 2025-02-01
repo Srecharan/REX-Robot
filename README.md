@@ -1,8 +1,14 @@
-# REX-Robot: Gantry System for Plant Manipulation
+# REX: Robot for EXtracting Leaf Samples
 
-| ![End-effector design](/assets/gantry-arm-2-scaled.png) | ![Full system setup](/assets/IMG_3249.png) |
-|:---:|:---:|
-| *End-effector design showing stereo camera and leaf manipulation system with 6-DOF control (Yaw, Pitch, Roll)* | *Full gantry system setup with integrated grow light system and plant monitoring station* |
+<div align="center">
+  <img src="assets/gantry-arm-2-scaled.png" width="400">
+  <img src="assets/IMG_3249.png" width="400">
+</div>
+
+<div align="center">
+  <p><em>Left: End-effector design showing stereo camera and leaf manipulation system with 6-DOF control (Yaw, Pitch, Roll)</em></p>
+  <p><em>Right: Full gantry system setup with integrated grow light system and plant monitoring station</em></p>
+</div>
 
 ## Overview
 REX-Robot (Robot for Extracting leaf samples) is a sophisticated 6-DOF gantry-based robotic system designed for precise plant manipulation in agricultural settings. Developed in collaboration with Virginia Tech, the system combines high-precision motion control, advanced trajectory planning, and visual servoing to enable accurate leaf manipulation for early-stage plant disease detection.
