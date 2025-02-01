@@ -1,6 +1,6 @@
 # REX-Robot: Gantry System for Plant Manipulation
 
-| ![End-effector design](/assets/gantry-arm-2-scaled.jpg) | ![Full system setup](/assets/IMG_3249.jpg) |
+| ![End-effector design](/assets/gantry-arm-2-scaled.png) | ![Full system setup](/assets/IMG_3249.png) |
 |:---:|:---:|
 | *End-effector design showing stereo camera and leaf manipulation system with 6-DOF control (Yaw, Pitch, Roll)* | *Full gantry system setup with integrated grow light system and plant monitoring station* |
 
