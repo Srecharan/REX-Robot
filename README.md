@@ -171,8 +171,30 @@ rosrun gantry_move gantry_move_client
 - **Partner**: Virginia Tech 
 - **CMU Scope**:  Development of robotic platform capable of autonomous multi-view imaging, point cloud processing, and leaf grasping and cutting capabilities for early-stage plant disease detection in agricultural settings
 
+## Note on System Integration
+This system represents the core robotic platform, integrating four key vision and control components:
+
+1. **REX Robot Integration (This Repository)**
+   - 6-DOF gantry-based manipulation
+   - Real-time trajectory planning
+   - Precision control implementation
+
+2. **LeafGrasp-Vision-ML** ([LeafGrasp-Vision-ML](https://github.com/Srecharan/Leaf-Grasping-Vision-ML.git))
+   - Vision-guided manipulation
+   - Grasp pose optimization
+   - Motion planning integration
+
+3. **RAFT-Stereo Node** ([RAFTStereo-REX](https://github.com/Srecharan/RAFTStereo-REX.git))
+   - 3D scene reconstruction
+   - Depth-guided manipulation
+   - Spatial mapping
+
+4. **YOLOv8 Segmentation Node** ([YoloV8Seg-REX](https://github.com/Srecharan/YoloV8Seg-REX.git))
+   - Target identification
+   - Leaf instance detection
+   - Real-time tracking
+
+Each component has its dedicated repository for detailed implementation. This repository focuses on precise robotic control and hardware integration for autonomous plant manipulation.
+
 ## License
 This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
-
-## Related Projects
-[PLACEHOLDER: Links to related repositories]
